@@ -1,28 +1,30 @@
 package collections
 
 type Queue struct {
-	queue []interface{}
+	Queue []int
 }
 
-func (q *Queue) Push(e interface{}) {
-	q.queue = append(q.queue, e)
+func (q *Queue) Push(e int) {
+	q.Queue = append(q.Queue, e)
 }
 
-func (q *Queue) Pop(i interface{}) {
-	q.queue = q.queue[1:]
+func (q *Queue) Pop(idx int) int {
+	e := q.Queue[idx]
+	q.Queue = append(q.Queue[:idx], q.Queue[idx+1:]...)
+	return e
 }
 
 func (q *Queue) Size() int {
-	return len(q.queue)
+	return len(q.Queue)
 }
 
 func (q *Queue) IsEmpty() bool {
 	return q.Size() == 0
 }
 
-func (q *Queue) Front() interface{} {
-	return q.queue[0]
+func (q *Queue) Front() int {
+	return q.Queue[0]
 }
-func (q *Queue) Back() interface{} {
-	return q.queue[q.Size()-1]
+func (q *Queue) Back() int {
+	return q.Queue[q.Size()-1]
 }
